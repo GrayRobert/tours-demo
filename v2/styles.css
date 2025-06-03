@@ -455,3 +455,42 @@ header h1 {
 /* .location-text {
     text-transform: uppercase;
 } */
+
+/* Basic styles for breadcrumbs */
+.country-breadcrumbs {
+    padding: 10px 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+}
+
+.country-breadcrumbs ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.country-breadcrumbs ul li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.country-breadcrumbs ul li a {
+    text-decoration: none;
+    color: #007bff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.country-breadcrumbs ul li a:hover {
+    background-color: #f0f0f0;
+    color: #0056b3;
+}
+
+/* Optional: Style for the last breadcrumb item or separator */
+.country-breadcrumbs ul li:not(:last-child)::after {
+    content: ">";
+    margin-left: 10px;
+    color: #6c757d;
+}

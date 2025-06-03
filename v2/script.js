@@ -34,10 +34,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     return a.localeCompare(b); // Alphabetical for others
                 });
                 
+                createCountryBreadcrumbs(sortedCountries, toursGrid); // Insert breadcrumbs
+
                 sortedCountries.forEach(country => {
                     const countryHeader = document.createElement('h2');
                     countryHeader.className = 'country-heading';
                     countryHeader.textContent = country;
+                    // Add ID for anchor linking
+                    countryHeader.id = 'country-' + country.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
                     toursGrid.appendChild(countryHeader);
 
                     const countryTourContainer = document.createElement('div');
@@ -178,7 +182,7 @@ function processRawTours(rawToursData) {
                 name: item.hotel_name,
                 url: `#${item.hotel_name.toLowerCase().replace(/\\s+/g, '-')}-link`, // Simple link generation
                 rating: item.hotel_start_rating, 
-                price_from: item.price_from // Price for this specific hotel instance on the tour
+                price_from: item.price_from // Price for this specific hotel instance on the tour product
             });
         } else {
             // Optionally, update price if a different one is found for an existing hotel on this tour product.
@@ -505,4 +509,40 @@ function handleResize() {
 // Debounced version of the resize handler
 const debouncedHandleResize = debounce(handleResize, 150);
 window.addEventListener('resize', debouncedHandleResize);
+
+function createCountryBreadcrumbs(countries, targetElementToPrependBefore) {
+    const breadcrumbsNav = document.createElement('nav');
+    breadcrumbsNav.id = 'country-breadcrumbs-nav';
+    breadcrumbsNav.className = 'country-breadcrumbs'; // For styling
+
+    const breadcrumbsList = document.createElement('ul');
+
+    countries.forEach(country => {
+        const listItem = document.createElement('li');
+        const link = document.createElement('a');
+        const sectionId = 'country-' + country.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+
+        link.href = `#${sectionId}`;
+        link.textContent = country;
+
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetElement = document.getElementById(sectionId);
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+
+        listItem.appendChild(link);
+        breadcrumbsList.appendChild(listItem);
+    });
+
+    breadcrumbsNav.appendChild(breadcrumbsList);
+
+    if (targetElementToPrependBefore && targetElementToPrependBefore.parentNode) {
+        targetElementToPrependBefore.parentNode.insertBefore(breadcrumbsNav, targetElementToPrependBefore);
+    } else {
+        document.body.insertBefore(breadcrumbsNav, document.body.firstChild); // Fallback if target isn't ready/found
+    }
+}
 
