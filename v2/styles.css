@@ -1,0 +1,457 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lexend', sans-serif;
+    background-color: #f5f5f5;
+    color: #1f1f1f;
+    line-height: 1.5;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 28px;
+    font-weight: 600;
+}
+
+/* Modified .tours-grid to act as a container for country sections */
+.tours-grid {
+    display: flex; /* Changed from grid to flex */
+    flex-direction: column; /* Stack country sections vertically */
+    gap: 30px; /* Gap between country sections */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#toursGrid {
+    display: flex;
+    flex-direction: column; /* Stack country sections vertically */
+    gap: 30px; /* Space between country sections */
+    padding: 20px;
+    max-width: 1280px;
+    margin: 0 auto; /* Center the grid */
+}
+
+.country-heading {
+    font-size: 1.8em;
+    color: #333;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #1969b5; /* Accent color border */
+}
+
+/* New grid for tours within each country section */
+.country-tours-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+.tour-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.tour-card:hover {
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.tour-image-link {
+    display: block; /* Ensures the link wraps the image correctly */
+}
+
+/* ADDED: Wrapper for tour image and badge */
+.tour-image-wrapper {
+    position: relative;
+    display: block; /* Or inline-block, depending on desired layout with link */
+}
+
+.tour-image {
+    width: 100%;
+    height: 300px; /* UPDATED: Fixed height for consistency, changed from 200px */
+    object-fit: cover; /* Crop image to fit */
+    display: block; /* Remove extra space below image */
+}
+
+/* ADDED: Container for badges on the tour image */
+.badges-container {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex; /* Arrange badges horizontally */
+    gap: 5px; /* Space between badges */
+    z-index: 10; /* Ensure badges are above the tour image */
+}
+
+/* UPDATED: Styles for tour badges (common and specific) */
+.tour-badge { /* Common styles for all badges */
+    width: 65px;  /* UPDATED: Changed from 55px */
+    height: auto;
+    opacity: 0.85; /* ADDED: Transparency for badges */
+}
+
+.tour-content {
+    padding: 15px;
+    flex-grow: 1; /* Allow content to take remaining space */
+    display: flex;
+    flex-direction: column;
+}
+
+.tour-date {
+    font-size: 0.85em;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.tour-title-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.tour-title {
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-bottom: 0;
+    color: #333;
+}
+
+.primary-hotel {
+    margin-bottom: 10px;
+}
+
+.primary-hotel-link {
+    text-decoration: none;
+    color: #007AFF; /* Accent color for the link */
+    font-weight: 500;
+    display: block;
+}
+
+.primary-hotel-link:hover {
+    text-decoration: underline;
+}
+
+.hotel-rating {
+    color: #ff9b0d; 
+    font-size: 1em; 
+    margin-right: 8px; /* ADDED: Space between stars and price */
+}
+
+.tour-description {
+    font-size: 0.9em;
+    color: #444;
+    margin-bottom: 15px;
+    height: 110px; /* ADDED: Fixed height */
+    overflow: hidden; /* ADDED: Hide overflow */
+}
+
+/* Renamed from .other-hotels and .other-hotels-label removed */
+.all-hotels-list {
+    padding-top: 10px;
+    border-top: 1px solid #eee; /* Optional: keep a top border for the hotels section */
+    min-height: 50px; /* Minimum height for at least one hotel */
+}
+
+/* .other-hotels-label removed */
+
+/* Combined and renamed from .other-hotels-list and .primary-hotel */
+.all-hotels-list .hotel-entry {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.all-hotels-list .hotel-entry:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+/* UPDATED: Styles for the new hotel text details structure */
+.hotel-text-details {
+    flex-grow: 1; /* Allows text details to take available space */
+    margin-right: 10px; /* Space between text and button */
+    display: flex;
+    flex-direction: column; /* Stack hotel name and price/rating vertically */
+    justify-content: center; /* Vertically center if needed, though content should fill */
+}
+
+.all-hotels-list .hotel-link { 
+    font-size: 0.85em;
+    text-decoration: none;
+    color: #007AFF;
+    display: block; /* Make hotel name take full width available to it */
+    margin-bottom: 3px; /* Small space below hotel name */
+}
+
+.all-hotels-list .hotel-link:hover { 
+    text-decoration: underline;
+}
+
+/* ADDED: Styles for the price and rating wrapper */
+.hotel-price-rating {
+    display: flex; /* Arrange price and rating side-by-side */
+    align-items: center; /* Align them vertically */
+}
+
+.hotel-price {
+    /* display: block; REMOVED: Now part of a flex layout */
+    font-size: 0.9em;
+    color: #555;
+    font-weight: 500;
+    /* margin-top: 2px; REMOVED */
+    /* margin-right: 8px; REMOVED: Moved to .hotel-rating */
+}
+
+/* REMOVED: Old .hotel-info styles as it's replaced by .hotel-text-details */
+/* .hotel-info {
+    flex-grow: 1; 
+    margin-right: 10px; 
+} */
+
+.view-hotel-button {
+    display: inline-block;
+    padding: 8px 12px; /* UPDATED: Changed top/bottom padding from 6px to 8px */
+    background-color: white; 
+    color: #ff9b0d; 
+    text-decoration: none;
+    border-radius: 8px; /* UPDATED: Changed from 4px */
+    border: 1px solid #ff9b0d; 
+    font-size: 0.85em;
+    font-weight: 500;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    white-space: nowrap; /* Prevent button text from wrapping */
+}
+
+.view-hotel-button:hover {
+    background-color: #ff9b0d; /* UPDATED */
+    color: white; /* UPDATED */
+    border-color: #ff9b0d; /* ADDED to ensure border color consistency on hover */
+    text-decoration: none;
+}
+
+/* New Title & Activity Wrapper */
+.title-activity-wrapper {
+    display: flex;
+    align-items: center; /* Changed from flex-start to center */
+    gap: 15px;
+    padding: 15px;
+    background: linear-gradient(to bottom, #f8f9fa, #e9ecef); /* Light grey gradient */
+    border-bottom: 1px solid #dee2e6; /* Separator line */
+    min-height: 110px; /* ADDED: Ensure consistent height for this section */
+}
+
+.tour-title-area {
+    flex: 1; /* Takes up available space */
+    min-width: 0; /* Prevents overflow */
+    /* ADDED: Flex properties to help center title if it's short */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Tour Details Area */
+.tour-details-area {
+    padding: 15px;
+}
+
+/* Activity Indicator Styles */
+.activity-indicator {
+    flex: 0 0 100px; /* Do not grow, do not shrink, basis 100px */
+    text-align: center;
+}
+
+.activity-gauge {
+    width: 70px; /* Adjusted to better match desired size */
+    height: 35px; /* Adjusted to better match desired size */
+    margin: 0 auto 5px auto; 
+    position: relative;
+}
+
+.gauge-background-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; 
+}
+
+.gauge-needle-img {
+    width: 8px;
+    height: 24px;
+    position: absolute;
+    bottom: 1px;
+    left: 44%; /* Adjusted from 50% based on inspector */
+    transform-origin: center 20px; /* Adjusted Y-value based on inspector */
+    transform: translateX(-50%) rotate(0deg); /* Base transform */
+    transition: transform 0.5s ease-in-out;
+}
+
+.activity-text-box {
+    /* REMOVED: background-color: #1969b5; */
+    /* REMOVED: color: white; */
+    /* REMOVED: padding: 5px 5px; */
+    /* REMOVED: border-radius: 4px; */
+    font-size: 0.75em; /* Slightly reduced base font size for the box */
+    line-height: 1.2; /* Tighter line height for the box */
+}
+
+.activity-text-label {
+    display: block;
+    font-size: 0.8em; /* Relative to parent .activity-text-box */
+    margin-bottom: 0; /* Removed margin */
+    font-weight: 400; /* Normal weight */
+    color: #888888; /* UPDATED: Light grey color */
+}
+
+.activity-text-value {
+    display: block;
+    font-weight: 600;
+    font-size: 0.9em; /* Relative to parent .activity-text-box */
+    color: #333333; /* UPDATED: Dark grey color */
+}
+
+/* Month Availability Styles */
+.month-availability {
+    padding: 10px 15px;
+    background-color: #ffffff; /* White background for the whole section */
+    /* border-top: 1px solid #eee; REMOVED: Replaced by new border */
+    position: relative; /* For positioning the header */
+    border: 1px solid rgba(25, 105, 181, 0.6); /* ADDED */
+    margin: 10px; /* ADDED */
+    border-radius: 15px; /* ADDED */
+}
+
+.departing-in-header {
+    position: absolute;
+    top: -8px; /* Adjust to sit on the line, depends on line-height and font-size */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ffffff; /* White background to hide the line */
+    padding: 0 8px; /* Space around the text */
+    font-size: 0.8em;
+    color: #777; /* Subtle grey text */
+    font-weight: 500;
+    border-top-left-radius: 6px; /* ADDED: Round top-left corner */
+    border-top-right-radius: 6px; /* ADDED: Round top-right corner */
+}
+
+.year-toggle {
+    margin-top: 10px; /* Added to create space below the header */
+    margin-bottom: 5px; /* UPDATED: Changed from 12px */
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+
+.year-toggle button {
+    padding: 8px 15px;
+    border: 1px solid #1969b5; /* Updated primary color, ensure border is always present */
+    background-color: white; 
+    color: #1969b5; /* Updated primary color */
+    font-family: 'Lexend', sans-serif;
+    font-size: 0.95em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.year-toggle button + button {
+    margin-left: -1px; /* Collapse left border with previous button's right border */
+}
+
+.year-toggle button.active {
+    background-color: #1969b5; /* Updated primary color */
+    color: white;
+}
+
+.year-toggle button:not(.active):hover {
+    background-color: #e0eaf3; /* Lighter shade of primary for hover */
+}
+
+.month-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 5px; /* Increased gap for more spacing */
+}
+
+.month-cell {
+    padding: 5px 8px; /* Adjusted padding for better look with rounded background */
+    text-align: center;
+    font-size: 0.85em;
+    font-weight: 500;
+    color: #555; /* Standard text color for unavailable months */
+    transition: background-color 0.2s, color 0.2s;
+    cursor: default;
+    height: auto; /* Allow height to be determined by padding */
+    min-height: 28px; /* Ensure a minimum height */
+    display: inline-flex; /* Changed to inline-flex for better sizing around text */
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px; /* Apply border-radius to all for consistency, background will make it visible */
+}
+
+.month-cell.available {
+    background-color: #1969b5; /* Updated primary color */
+    color: white;
+    font-weight: 600;
+}
+
+/* Location Bar Styles */
+.location-bar {
+    position: absolute; 
+    bottom: 0;          
+    left: 0;
+    right: 0;
+    background-color: rgba(25, 105, 181, 0.6); 
+    color: white;
+    padding: 8px 15px;
+    display: flex;
+    align-items: center;
+    font-size: 0.9em;
+    font-weight: 500;
+    /* text-transform: uppercase; REMOVED - will apply to segment or name directly */
+}
+
+/* ADDED: Styles for individual country flag + name segments */
+.country-name-segment {
+    display: inline-flex; /* Align flag and name nicely */
+    align-items: center;
+    text-transform: uppercase;
+}
+
+/* ADDED: Styles for the separator, if needed for specific spacing/styling */
+.location-separator {
+    margin: 0 0.5em; /* UPDATED: Increased horizontal margin around the dot */
+}
+
+.flag-icon {
+    display: inline-block;
+    width: 24px; 
+    height: 18px; 
+    margin-right: 5px; /* Reduced margin, as it's now next to its own country name */
+    vertical-align: middle; 
+    border-radius: 2px;
+}
+
+.flag-icon.placeholder {
+    /* Specific styles for when no flag is available, if needed */
+}
+
+/* REMOVED: .location-text as content is now structured in segments */
+/* .location-text {
+    text-transform: uppercase;
+} */
