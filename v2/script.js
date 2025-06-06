@@ -66,6 +66,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 toursGrid.innerHTML = '<p>Error loading tours. Please try again later.</p>';
             }
         });
+
+    setupBackToTopButton(); // Initialize the back to top button
 });
 
 // Helper function for country and location detection
@@ -544,5 +546,28 @@ function createCountryBreadcrumbs(countries, targetElementToPrependBefore) {
     } else {
         document.body.insertBefore(breadcrumbsNav, document.body.firstChild); // Fallback if target isn't ready/found
     }
+}
+
+// Back to Top Button functionality
+function setupBackToTopButton() {
+    const backToTopButton = document.createElement('button');
+    backToTopButton.id = 'backToTopBtn';
+    backToTopButton.textContent = '↑'; // Or an icon/SVG
+    document.body.appendChild(backToTopButton);
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 200) { // Show button after scrolling 200px
+            backToTopButton.classList.add('show');
+        } else {
+            backToTopButton.classList.remove('show');
+        }
+    });
+
+    backToTopButton.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
 }
 

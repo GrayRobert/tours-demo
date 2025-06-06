@@ -494,3 +494,34 @@ header h1 {
     margin-left: 10px;
     color: #6c757d;
 }
+
+/* Back to Top Button Styles */
+#backToTopBtn {
+    display: none; /* Hidden by default */
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000; /* Ensure it's above most other content */
+    border: none;
+    outline: none;
+    background-color: #007bff; /* Example background color */
+    color: white;
+    cursor: pointer;
+    padding: 12px 15px;
+    border-radius: 50%; /* Circular button */
+    font-size: 18px; /* Adjust as needed */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+}
+
+#backToTopBtn.show {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+}
+
+#backToTopBtn:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
